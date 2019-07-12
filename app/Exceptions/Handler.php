@@ -18,7 +18,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        GeneralException::class,
     ];
 
     /**
@@ -34,10 +34,10 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     * @param Exception $exception
      *
-     * @param  \Exception  $exception
-     * @return void
+     * @throws Exception
+     * @return mixed|void
      */
     public function report(Exception $exception)
     {

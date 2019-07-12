@@ -27,24 +27,25 @@ class UserPasswordController extends Controller
     }
 
     /**
-     * @param User              $user
      * @param ManageUserRequest $request
+     * @param User              $user
      *
      * @return mixed
      */
-    public function edit(User $user, ManageUserRequest $request)
+    public function edit(ManageUserRequest $request, User $user)
     {
         return view('backend.auth.user.change-password')
             ->withUser($user);
     }
 
     /**
-     * @param User                      $user
      * @param UpdateUserPasswordRequest $request
+     * @param User                      $user
      *
+     * @throws \App\Exceptions\GeneralException
      * @return mixed
      */
-    public function update(User $user, UpdateUserPasswordRequest $request)
+    public function update(UpdateUserPasswordRequest $request, User $user)
     {
         $this->userRepository->updatePassword($user, $request->only('password'));
 

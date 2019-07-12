@@ -8,13 +8,17 @@ class DatabaseSeeder extends Seeder
     use TruncateTable;
 
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * Seed the application's database.
      */
     public function run()
     {
         Model::unguard();
+
+        $this->truncateMultiple([
+            'cache',
+            'jobs',
+            'sessions',
+        ]);
 
         $this->call(AuthTableSeeder::class);
 

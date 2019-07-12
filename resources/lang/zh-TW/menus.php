@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Menus Language Lines
@@ -46,6 +45,7 @@ return [
         'sidebar' => [
             'dashboard' => 'Dashboard',
             'general' => 'General',
+            'history' => 'History',
             'system' => 'System',
         ],
     ],
@@ -67,18 +67,20 @@ return [
             'el' => '希臘語（Greek）',
             'en' => '英語（English）',
             'es' => '西班牙語（Spanish）',
+            'fa' => '波斯語 (Persian) ',
             'fr' => '法語（French）',
             'he' => '希伯來語 (Hebrew)',
             'id' => '印度尼西亞語（Indonesian）',
             'it' => '意大利語（Italian）',
             'ja' => '日語（Japanese）',
             'nl' => '荷蘭語（Dutch）',
-            'no'    => '挪威 (Norwegian)',
+            'no' => '挪威 (Norwegian)',
             'pt_BR' => '巴西葡萄牙語（Brazilian Portuguese）',
             'ru' => '俄語（Russian）',
             'sv' => '瑞典語（Swedish）',
             'th' => '泰語（Thai）',
-            'tr'    => '(Turkish)',
+            'tr' => '(Turkish)',
+            'uk' => '(Ukrainian)',
         ],
     ],
 ];

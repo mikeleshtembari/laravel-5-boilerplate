@@ -45,9 +45,9 @@ class RoleController extends Controller
     {
         return view('backend.auth.role.index')
             ->withRoles($this->roleRepository
-                ->with('users', 'permissions')
-                ->orderBy('id', 'asc')
-                ->paginate(25));
+            ->with('users', 'permissions')
+            ->orderBy('id')
+            ->paginate());
     }
 
     /**
@@ -64,6 +64,7 @@ class RoleController extends Controller
     /**
      * @param StoreRoleRequest $request
      *
+     * @throws \App\Exceptions\GeneralException
      * @return mixed
      */
     public function store(StoreRoleRequest $request)
@@ -74,12 +75,12 @@ class RoleController extends Controller
     }
 
     /**
-     * @param Role              $role
      * @param ManageRoleRequest $request
+     * @param Role              $role
      *
      * @return mixed
      */
-    public function edit(Role $role, ManageRoleRequest $request)
+    public function edit(ManageRoleRequest $request, Role $role)
     {
         if ($role->isAdmin()) {
             return redirect()->route('admin.auth.role.index')->withFlashDanger('You can not edit the administrator role.');
@@ -92,12 +93,13 @@ class RoleController extends Controller
     }
 
     /**
-     * @param Role              $role
      * @param UpdateRoleRequest $request
+     * @param Role              $role
      *
+     * @throws \App\Exceptions\GeneralException
      * @return mixed
      */
-    public function update(Role $role, UpdateRoleRequest $request)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
         $this->roleRepository->update($role, $request->only('name', 'permissions'));
 
@@ -105,13 +107,13 @@ class RoleController extends Controller
     }
 
     /**
-     * @param Role $role
      * @param ManageRoleRequest $request
+     * @param Role              $role
      *
-     * @return mixed
      * @throws \Exception
+     * @return mixed
      */
-    public function destroy(Role $role, ManageRoleRequest $request)
+    public function destroy(ManageRoleRequest $request, Role $role)
     {
         if ($role->isAdmin()) {
             return redirect()->route('admin.auth.role.index')->withFlashDanger(__('exceptions.backend.access.roles.cant_delete_admin'));

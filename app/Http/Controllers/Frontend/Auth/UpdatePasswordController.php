@@ -29,6 +29,7 @@ class UpdatePasswordController extends Controller
     /**
      * @param UpdatePasswordRequest $request
      *
+     * @throws \App\Exceptions\GeneralException
      * @return mixed
      */
     public function update(UpdatePasswordRequest $request)

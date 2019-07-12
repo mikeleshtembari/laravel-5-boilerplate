@@ -26,8 +26,8 @@ trait UserMethod
     /**
      * @param bool $size
      *
-     * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
      * @throws \Illuminate\Container\EntryNotFoundException
+     * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
      */
     public function getPicture($size = false)
     {
@@ -44,6 +44,7 @@ trait UserMethod
         }
 
         $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
+
         if ($social_avatar && strlen($social_avatar->avatar)) {
             return $social_avatar->avatar;
         }
@@ -80,7 +81,7 @@ trait UserMethod
      */
     public function isActive()
     {
-        return $this->active == 1;
+        return $this->active;
     }
 
     /**
@@ -88,7 +89,7 @@ trait UserMethod
      */
     public function isConfirmed()
     {
-        return $this->confirmed == 1;
+        return $this->confirmed;
     }
 
     /**
@@ -96,6 +97,6 @@ trait UserMethod
      */
     public function isPending()
     {
-        return config('access.users.requires_approval') && $this->confirmed == 0;
+        return config('access.users.requires_approval') && ! $this->confirmed;
     }
 }

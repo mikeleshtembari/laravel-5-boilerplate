@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 @langrtl
-    <html lang="{{ app()->getLocale() }}" dir="rtl">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 @else
-    <html lang="{{ app()->getLocale() }}">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @endlangrtl
     <head>
         <meta charset="utf-8">
@@ -23,6 +23,8 @@
         @stack('after-styles')
     </head>
     <body>
+        @include('includes.partials.demo')
+
         <div id="app">
             @include('includes.partials.logged-in-as')
             @include('frontend.includes.nav')
@@ -35,6 +37,8 @@
 
         <!-- Scripts -->
         @stack('before-scripts')
+        {!! script(mix('js/manifest.js')) !!}
+        {!! script(mix('js/vendor.js')) !!}
         {!! script(mix('js/frontend.js')) !!}
         @stack('after-scripts')
 
